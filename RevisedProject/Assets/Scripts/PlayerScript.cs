@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     public Transform PlayerRestart;
 
     public CharacterController2D controller;
+    public Animator animator;
 
     public float runSpeed = 40f;
 
@@ -24,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     GameObject[] hearts;
     private Vector3 hpos;
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    //private Animator animator;
     //
 
 
@@ -56,6 +57,8 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Jump"))
         {
