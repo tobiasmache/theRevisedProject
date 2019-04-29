@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public static PlayerScript instance = null;
     public Transform PlayerRestart;
 
     public CharacterController2D controller;
@@ -14,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
-    private int lightIntensity=7;
+    public int lightIntensity = 7;
     public Light Firefly;
 
     //Rij Heart
@@ -32,6 +33,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        instance = this;
         //Rij Heart
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
@@ -83,7 +85,7 @@ public class PlayerScript : MonoBehaviour
         {
             GameObject.Find("Collectable").GetComponent<SpriteRenderer>().enabled = false;
             GameObject.Find("Collectable").GetComponent<PolygonCollider2D>().enabled = false;
-            lightIntensity =lightIntensity+10;
+            lightIntensity =lightIntensity+5;
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
