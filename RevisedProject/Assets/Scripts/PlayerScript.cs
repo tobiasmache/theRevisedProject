@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public static PlayerScript instance = null;
     public Transform PlayerRestart;
-
+    private ChangeHearts changehearts;
     public CharacterController2D controller;
     public Animator animator;
 
@@ -18,41 +17,18 @@ public class PlayerScript : MonoBehaviour
     public int lightIntensity = 7;
     public Light Firefly;
 
-    //Rij Heart
-    private int health;
-    public GameObject Heart_on_Screen;
-    public Sprite Heart_on;
-    public Sprite Heart_off;
-    GameObject[] hearts;
-    private Vector3 hpos;
-    private SpriteRenderer spriteRenderer;
-    //private Animator animator;
-    //
+    public GameObject heart1;
+    public GameObject heart2;
+    public GameObject heart3;
 
+    private int health;
 
     // Start is called before the first frame update
     void Awake()
     {
-        instance = this;
-        //Rij Heart
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            animator = GetComponent<Animator>();
-            //healthtext = health.ToString();
-            Debug.Log("Health: " + health);
-
-            hearts = new GameObject[3];
-            hpos.x = 6.9f;
-            hpos.y = 4.5f;
-
-             for (int ii = 0; ii < hearts.Length; ii++)
-             {
-                GameObject heart1 = Instantiate(Heart_on_Screen);
-                heart1.transform.position = hpos;
-                hearts[ii] = heart1;
-                hpos.x = hpos.x + 0.8f;
-             }
-        //
-
+        changehearts = GetComponent<ChangeHearts>();
+        changehearts.CreateHearts(heart1, heart2, heart3);
+        Debug.Log("CreateHearts");
     }
 
     // Update is called once per frame
@@ -64,6 +40,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log("Jump");
             jump = true;
         }
 
@@ -85,45 +62,23 @@ public class PlayerScript : MonoBehaviour
         {
             GameObject.Find("Collectable").GetComponent<SpriteRenderer>().enabled = false;
             GameObject.Find("Collectable").GetComponent<PolygonCollider2D>().enabled = false;
-            lightIntensity =lightIntensity+5;
+            lightIntensity = lightIntensity + 5;
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
             PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
             health++;
-            Debug.Log("Health: " + health);
-            Change_Heart();
+            changehearts.UpdateHearts(health);
 
         }
         if (other.gameObject.CompareTag("Spike"))
         {
             PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
             health++;
-            Debug.Log("Health: " + health);
-            Change_Heart();
-            //Heart_on_Screen.gameObject.GetComponent<SpriteRenderer>().sprite = Heart_off;
-            //Debug.Log("Health: " + health);
+            changehearts.UpdateHearts(health);
 
         }
     }
-
-    void Change_Heart()
-    {
-        if (health == -1)
-        {
-            for (int ii = 0; ii < hearts.Length; ii++)
-            {
-                hearts[ii].gameObject.GetComponent<SpriteRenderer>().sprite = Heart_on;
-            }
-        }
-
-        else
-        {
-            for (int ii = 0; ii < hearts.Length; ii++)
-            {
-                hearts[health - 1].gameObject.GetComponent<SpriteRenderer>().sprite = Heart_off;
-            }
-        }
-    }
-
 }
+
+
