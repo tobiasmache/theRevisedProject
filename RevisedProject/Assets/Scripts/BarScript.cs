@@ -10,15 +10,17 @@ public class BarScript : MonoBehaviour
     [SerializeField]
     private Image content;
 
-    void Start()
+    private PlayerScript playerscript;
+
+    void Awake()
     {
-       
+        playerscript = GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        lightAmount = (PlayerScript.instance.lightIntensity);
+        lightAmount = (playerscript.lightIntensity);
         UpdateLightBar();
     }
 
