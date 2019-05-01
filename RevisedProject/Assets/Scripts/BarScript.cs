@@ -7,20 +7,21 @@ public class BarScript : MonoBehaviour
 {
     private float lightAmount;
 
+    public GameObject connectorToPlayerScript;
+    private PlayerScript playerscript;
+
     [SerializeField]
     private Image content;
 
-    private PlayerScript playerscript;
-
     void Awake()
     {
-        playerscript = GetComponent<PlayerScript>();
+        playerscript = connectorToPlayerScript.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        lightAmount = (playerscript.lightIntensity);
+        lightAmount = playerscript.lightIntensity;
         UpdateLightBar();
     }
 
