@@ -16,6 +16,7 @@ public class BarScript : MonoBehaviour
     void Awake()
     {
         playerscript = connectorToPlayerScript.GetComponent<PlayerScript>();
+
     }
 
     // Update is called once per frame
