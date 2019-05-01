@@ -10,7 +10,6 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
 
     public float runSpeed = 40f;
-
     float horizontalMove = 0f;
     bool jump = false;
 
@@ -20,10 +19,16 @@ public class PlayerScript : MonoBehaviour
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
-
     private int health;
 
+    public GameObject[] collectables;
+
     // Start is called before the first frame update
+    private void Start()
+    {
+        collectables= GameObject.FindGameObjectsWithTag("Collectable");
+        Debug.Log(collectables.Length);
+    }
     void Awake()
     {
         changehearts = GetComponent<ChangeHearts>();
@@ -60,8 +65,14 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Collectable"))
         {
-            GameObject.Find("Collectable").GetComponent<SpriteRenderer>().enabled = false;
-            GameObject.Find("Collectable").GetComponent<PolygonCollider2D>().enabled = false;
+            for(int ii=0; ii < collectables.Length; ii++)
+            {
+                if (other.gameObject == collectables[ii])
+                {
+                    collectables[ii].GetComponent<SpriteRenderer>().enabled = false;
+                    collectables[ii].GetComponent<PolygonCollider2D>().enabled = false;
+                }
+            }
             lightIntensity = lightIntensity + 5;
         }
         if (other.gameObject.CompareTag("Enemy"))
@@ -80,5 +91,4 @@ public class PlayerScript : MonoBehaviour
         }
     }
 }
-
 
