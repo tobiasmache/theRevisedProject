@@ -7,6 +7,7 @@ TagManager:
   - Spike
   - Collectable
   - Enemy
+  - Portal
   layers:
   - Default
   - TransparentFX

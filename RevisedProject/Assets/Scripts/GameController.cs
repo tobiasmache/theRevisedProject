@@ -6,23 +6,28 @@ using UnityEngine.Tilemaps;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private string newLevel;
-    GameObject[] Enemies;
-    public GameObject EnemyPrefab;
-    private Vector3 epos;
+    bool levelstart;
+    int LevelCount=0;
 
+    public string[] Levels;
+
+    //[SerializeField] private string newLevel;
+    //GameObject[] Enemies;
+    //public GameObject EnemyPrefab;
+    //private Vector3 epos;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(newLevel);
+            SceneManager.LoadScene(LevelCount);
         }
+        LevelCount++;
     }
 
     private void Awake()
     {
-  
+        //Levels = new string[5];
     }
 
     void LevelBuilder()
