@@ -6,28 +6,26 @@ using UnityEngine.Tilemaps;
 
 public class GameController : MonoBehaviour
 {
-    bool levelstart;
-    int LevelCount=0;
-
+    bool gamestart = false;
     public string[] Levels;
 
-    //[SerializeField] private string newLevel;
-    //GameObject[] Enemies;
-    //public GameObject EnemyPrefab;
-    //private Vector3 epos;
+    public Canvas MainMenuCanvas;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void PlayGame()
     {
-        if (other.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(LevelCount);
-        }
-        LevelCount++;
+        gamestart = true;
+
+    }
+
+    public void SceneChange(int lc)
+    {
+        Debug.Log("Level Count" + lc);
+        SceneManager.LoadScene(Levels[lc]);
     }
 
     private void Awake()
     {
-        //Levels = new string[5];
+        
     }
 
     void LevelBuilder()
@@ -38,6 +36,11 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gamestart == true)
+        {
+            MainMenuCanvas.GetComponent<Canvas>().enabled = false;
+        }
     }
 }
+
+

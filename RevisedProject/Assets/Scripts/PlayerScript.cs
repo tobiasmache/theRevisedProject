@@ -9,9 +9,14 @@ public class PlayerScript : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
+    public GameObject connectorToGameController;
+    private GameController gamecontroller;
+
     public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
+
+    private int LevelCount=-1;
 
     public int lightIntensity = 7;
     public Light Firefly;
@@ -26,7 +31,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        collectables= GameObject.FindGameObjectsWithTag("Collectable");
+        collectables = GameObject.FindGameObjectsWithTag("Collectable");
         Debug.Log(collectables.Length);
     }
     void Awake()
@@ -34,6 +39,7 @@ public class PlayerScript : MonoBehaviour
         changehearts = GetComponent<ChangeHearts>();
         changehearts.CreateHearts(heart1, heart2, heart3);
         Debug.Log("CreateHearts");
+        gamecontroller = connectorToGameController.GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -55,17 +61,15 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         //move character
-
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Collectable"))
         {
-            for(int ii=0; ii < collectables.Length; ii++)
+            for (int ii = 0; ii < collectables.Length; ii++)
             {
                 if (other.gameObject == collectables[ii])
                 {
@@ -87,7 +91,13 @@ public class PlayerScript : MonoBehaviour
             PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
             health++;
             changehearts.UpdateHearts(health);
+        }
 
+        if (other.gameObject.CompareTag("Portal"))
+        {
+            Debug.Log("PORTAL"+LevelCount);
+            LevelCount = LevelCount + 1;
+            gamecontroller.SceneChange(LevelCount);
         }
     }
 }
