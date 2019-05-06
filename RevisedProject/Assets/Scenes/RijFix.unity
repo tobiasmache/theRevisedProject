@@ -277,6 +277,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1463627042}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &177415883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177415882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55df42e6a551fac449b102b8f940534d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPos: {fileID: 0}
+  animator: {fileID: 177415887}
+  enemies: []
 --- !u!95 &177415887
 Animator:
   serializedVersion: 3
@@ -325,9 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3614b181adf23174b8303dd16a5175e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newLevel: 
-  EnemyPrefab: {fileID: 5030472697223672278, guid: ae06149847b7c744a9d153c01b23a07e,
-    type: 3}
+  Levels: []
 --- !u!4 &370630430
 Transform:
   m_ObjectHideFlags: 0
@@ -865,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb466560a568fc49b6835106184b71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectorToPlayerScript: {fileID: 0}
   content: {fileID: 640467089}
 --- !u!1 &640467087
 GameObject:
@@ -1338,6 +1352,7 @@ MonoBehaviour:
   heart1: {fileID: 155413098}
   heart2: {fileID: 110718673}
   heart3: {fileID: 1846841516}
+  collectables: []
 --- !u!114 &1186161502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,6 +1465,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 177415884, guid: dcd16edd311049542a312ab463e75ed1, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 177415887}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcd16edd311049542a312ab463e75ed1, type: 3}
 --- !u!1 &1517679925
@@ -2582,8 +2601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3614b181adf23174b8303dd16a5175e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newLevel: Level1
-  EnemyPrefab: {fileID: 0}
+  Levels: []
 --- !u!61 &1986401419
 BoxCollider2D:
   m_ObjectHideFlags: 0

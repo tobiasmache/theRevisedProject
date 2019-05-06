@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public Transform Enemy;
     private Vector3 enemyPosition;
+    public Animator animator;
 
     void Awake()
     {
