@@ -414,10 +414,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - 
+  - Start
   - 
   - 
   - 
-  - 
+  MainMenuCanvas: {fileID: 0}
 --- !u!4 &370630430
 Transform:
   m_ObjectHideFlags: 0
@@ -1583,6 +1584,7 @@ MonoBehaviour:
   PlayerRestart: {fileID: 1186161500}
   controller: {fileID: 1186161502}
   animator: {fileID: 1186161503}
+  connectorToGameController: {fileID: 370630428}
   runSpeed: 40
   lightIntensity: 7
   Firefly: {fileID: 730736266}
