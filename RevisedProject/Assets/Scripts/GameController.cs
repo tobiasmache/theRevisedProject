@@ -6,42 +6,66 @@ using UnityEngine.Tilemaps;
 
 public class GameController : MonoBehaviour
 {
-    bool gamestart = false;
-    bool optionsp = false;
-    bool backs = false;
+    public static GameController Instance;
     public string[] Levels;
 
     public Canvas MainMenuCanvas;
     public GameObject mainMenu;
     public GameObject optionsMenu;
+    public GameObject helpMenu;
+    public GameObject creditMenu;
+
+    public GameObject connectorToChangeHearts;
+    private ChangeHearts changehearts;
+
 
     public void PlayGame()
     {
-        gamestart = true;
+        MainMenuCanvas.GetComponent<Canvas>().enabled = false;
     }
 
     public void OptionsPressed()
     {
-        optionsp = true;
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(true);
     }
 
     public void BackPressed()
     {
-        backs = true;
+        optionsMenu.SetActive(false);
+        mainMenu.SetActive(true);
+        helpMenu.SetActive(false);
+        creditMenu.SetActive(false);
+    }
+    public void HelpPressed()
+    {
+        mainMenu.SetActive(false);
+        helpMenu.SetActive(true);
+    }
+    public void CreditsPressed()
+    {
+        mainMenu.SetActive(false);
+        creditMenu.SetActive(true);
     }
 
-    public void SceneChange(int lc)
+    public void QuitGame()
     {
-        Debug.Log("Level Count" + lc);
-        SceneManager.LoadScene(Levels[lc]);
+        Debug.Log("QUIT");
+        Application.Quit();
+    }
+
+    public void SceneChange(int lc, int health)
+    {
+        Debug.Log("Level Count" + (lc-1));
+        SceneManager.LoadScene(Levels[lc-1]);
     }
 
     private void Awake()
     {
-        
+        changehearts = connectorToChangeHearts.GetComponent<ChangeHearts>();
     }
 
-    void LevelBuilder()
+    private void Start()
     {
 
     }
@@ -49,22 +73,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gamestart == true)
-        {
-            MainMenuCanvas.GetComponent<Canvas>().enabled = false;
-        }
-        if (optionsp == true)
-        {
-            mainMenu.SetActive(false);
-            optionsMenu.SetActive(true);
-        }
-        if (backs == true)
-        {
-            optionsp = false;
-            backs = false;
-            optionsMenu.SetActive(false);
-            mainMenu.SetActive(true);  
-        }
+
     }
 }
 

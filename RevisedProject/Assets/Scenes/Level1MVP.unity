@@ -414,11 +414,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - 
-  - Start
+  - 
   - 
   - 
   - 
   MainMenuCanvas: {fileID: 0}
+  mainMenu: {fileID: 0}
+  optionsMenu: {fileID: 0}
+  helpMenu: {fileID: 0}
+  creditMenu: {fileID: 0}
+  connectorToChangeHearts: {fileID: 0}
 --- !u!4 &370630430
 Transform:
   m_ObjectHideFlags: 0
@@ -868,6 +873,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae06149847b7c744a9d153c01b23a07e, type: 3}
+--- !u!1 &567293960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567293962}
+  - component: {fileID: 567293961}
+  m_Layer: 0
+  m_Name: GlobalVariableStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &567293961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567293960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359c75c4addd093479e3d108701116b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  lightIntensity: 0
+  SceneNumber: 0
+--- !u!4 &567293962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567293960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.33698827, y: -0.12725393, z: 56.50313}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579111058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1637,7 @@ MonoBehaviour:
   animator: {fileID: 1186161503}
   connectorToGameController: {fileID: 370630428}
   runSpeed: 40
+  health: 0
   lightIntensity: 7
   Firefly: {fileID: 730736266}
   heart1: {fileID: 155413098}

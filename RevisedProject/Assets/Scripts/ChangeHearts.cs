@@ -6,7 +6,7 @@ public class ChangeHearts : MonoBehaviour
 {
     public Sprite Heart_on;
     public Sprite Heart_off;
-    SpriteRenderer[] spriteRenders;
+    private SpriteRenderer[] spriteRenders;
 
     public void CreateHearts(GameObject h1, GameObject h2, GameObject h3)
     {
@@ -15,7 +15,6 @@ public class ChangeHearts : MonoBehaviour
         spriteRenders[1] = h2.gameObject.GetComponent<SpriteRenderer>();
         spriteRenders[2] = h3.gameObject.GetComponent<SpriteRenderer>();
         Debug.Log("Finished");
-
     }
 
     public void UpdateHearts(int health)
@@ -23,7 +22,15 @@ public class ChangeHearts : MonoBehaviour
         Debug.Log("Update Hearts: " + health);
         if (health != 0)
         {
-            spriteRenders[health - 1].sprite = Heart_off;
+            for (int jj=0; jj<health; jj++)
+            {
+                spriteRenders[jj].sprite = Heart_off;
+            }
+            for (int jj = 2; jj < 3-health; jj++)
+            {
+                spriteRenders[jj].sprite = Heart_on;
+            }
+            
         }
     }
 
