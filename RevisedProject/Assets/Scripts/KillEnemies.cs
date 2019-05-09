@@ -18,7 +18,7 @@ public class KillEnemies : MonoBehaviour
     private void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        enemyaccess.animator.SetBool("Alive", true);
+        
     }
 
     // Update is called once per frame
@@ -33,10 +33,13 @@ public class KillEnemies : MonoBehaviour
             {
                 if (Mathf.Abs(PlayerPos.transform.position.x-enemies[hh].transform.position.x)<=2)
                 {
-                    enemyaccess.animator.SetBool("Alive", false); 
-                    enemies[hh].GetComponent<SpriteRenderer>().enabled = false;
+                    //enemyaccess.animator.SetBool("Alive", false);
+                    enemies[hh].GetComponent<EnemyController>().alive = false;
+                    //put in a wait function
+                    //enemies[hh].GetComponent<SpriteRenderer>().enabled = false;
                    // enemies[hh].GetComponent<PolygonCollider2D>().enabled = false;
                     enemies[hh].GetComponent<CircleCollider2D>().enabled = false;
+                    
                 }
             }
 
@@ -47,6 +50,10 @@ public class KillEnemies : MonoBehaviour
             playerscript.lightIntensity = playerscript.lightIntensity - 10;
         }
     }
+
+
+
+
 }
 
 
