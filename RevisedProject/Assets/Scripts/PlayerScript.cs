@@ -16,15 +16,14 @@ public class PlayerScript : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
+    public int health=0;
     private int LevelCount=-1;
-
     public int lightIntensity = 7;
     public Light Firefly;
 
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
-    private int health;
 
     public GameObject[] collectables;
 
@@ -32,14 +31,21 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         collectables = GameObject.FindGameObjectsWithTag("Collectable");
-        Debug.Log(collectables.Length);
+        Debug.Log("collectables in Scene= "+collectables.Length);
+
+        //Load Saved Data into Game
+        health = GlobalVariableStorer.Instance.health;
+        lightIntensity = GlobalVariableStorer.Instance.lightIntensity;
+        LevelCount = GlobalVariableStorer.Instance.SceneNumber;
+        changehearts.UpdateHearts(health);
     }
     void Awake()
     {
         changehearts = GetComponent<ChangeHearts>();
+        gamecontroller = connectorToGameController.GetComponent<GameController>();
         changehearts.CreateHearts(heart1, heart2, heart3);
         Debug.Log("CreateHearts");
-        gamecontroller = connectorToGameController.GetComponent<GameController>();
+
     }
 
     // Update is called once per frame
@@ -56,6 +62,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         Firefly.intensity = lightIntensity;
+
+        if (LevelCount == 0)
+        {
+            lightIntensity = 7;
+        }
     }
 
     private void FixedUpdate()
@@ -96,9 +107,18 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.CompareTag("Portal"))
         {
             Debug.Log("PORTAL"+LevelCount);
-            LevelCount = LevelCount + 1;
-            gamecontroller.SceneChange(LevelCount);
+            LevelCount++;
+            SavePlayerData();
+            gamecontroller.SceneChange(LevelCount,health);
         }
+    }
+
+    public void SavePlayerData()
+    {
+        Debug.Log("Health= "+health);
+        GlobalVariableStorer.Instance.health = health;
+        GlobalVariableStorer.Instance.lightIntensity = lightIntensity;
+        GlobalVariableStorer.Instance.SceneNumber = LevelCount;
     }
 }
 
