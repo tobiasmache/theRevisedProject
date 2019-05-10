@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Enemy.localPosition = new Vector3(Mathf.Lerp(enemyPosition.x-1, enemyPosition.x+1f, Mathf.PingPong(Time.time * .5f, 1)), enemyPosition.y, 0f);
+        Enemy.localPosition = new Vector3(Mathf.Lerp(enemyPosition.x-4, enemyPosition.x, Mathf.PingPong(Time.time * .5f, 1)), enemyPosition.y, 0f);
 
     }
 }
