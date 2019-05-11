@@ -16,7 +16,6 @@ public class CharacterController2D : MonoBehaviour
     Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
-
     [Header("Events")]
     [Space]
 
@@ -65,7 +64,6 @@ public class CharacterController2D : MonoBehaviour
         {
 
 
-
             // Move the character by finding the target velocity
             Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
             // And then smoothing it out and applying it to the character
@@ -90,6 +88,9 @@ public class CharacterController2D : MonoBehaviour
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+
+
+
         }
     }
 
