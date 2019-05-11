@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -20,7 +21,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject heart2; 
     public GameObject heart3;
     private int health;
-
+    public static int Scorecounter = 0;
+    public Text Score;
     public GameObject[] collectables;
 
     // Start is called before the first frame update
@@ -39,6 +41,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -50,6 +53,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         Firefly.intensity = lightIntensity;
+        PrintScore();
     }
 
     private void FixedUpdate()
@@ -71,6 +75,8 @@ public class PlayerScript : MonoBehaviour
                 {
                     collectables[ii].GetComponent<SpriteRenderer>().enabled = false;
                     collectables[ii].GetComponent<PolygonCollider2D>().enabled = false;
+                    Scorecounter = Scorecounter + 5;
+
                 }
             }
             lightIntensity = lightIntensity + 5;
@@ -90,5 +96,12 @@ public class PlayerScript : MonoBehaviour
 
         }
     }
+    void PrintScore()
+    {
+
+        Score.text =  Scorecounter.ToString();
+        Debug.Log(Scorecounter);
+    }
+
 }
 
