@@ -116,7 +116,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Spike"))
         {
-            PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f)
+            PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
             health++;
             changehearts.UpdateHearts(health);
 
