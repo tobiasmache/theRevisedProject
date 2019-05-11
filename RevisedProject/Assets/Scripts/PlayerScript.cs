@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
+    private int jumpCounter = 0;
+
     public int health=0;
     private int LevelCount=-1;
     public int lightIntensity = 7;
@@ -38,6 +40,11 @@ public class PlayerScript : MonoBehaviour
         lightIntensity = GlobalVariableStorer.Instance.lightIntensity;
         LevelCount = GlobalVariableStorer.Instance.SceneNumber;
         changehearts.UpdateHearts(health);
+
+        if (LevelCount == 0)
+        {
+            lightIntensity = 7;
+        }
     }
     void Awake()
     {
@@ -45,7 +52,6 @@ public class PlayerScript : MonoBehaviour
         gamecontroller = connectorToGameController.GetComponent<GameController>();
         changehearts.CreateHearts(heart1, heart2, heart3);
         Debug.Log("CreateHearts");
-
     }
 
     // Update is called once per frame
@@ -57,16 +63,22 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Jump");
-            jump = true;
+            Debug.Log("Grounded:" + controller.m_Grounded);
+            if (jumpCounter <= 0 && controller.m_Grounded == false )
+            {
+                Debug.Log("Jump");
+                jump = true;
+                jumpCounter++;
+            }
+            else if (controller.m_Grounded==true)
+            {
+                jump = true;
+                jumpCounter = 0;
+            }
+
         }
 
         Firefly.intensity = lightIntensity;
-
-        if (LevelCount == 0)
-        {
-            lightIntensity = 7;
-        }
     }
 
     private void FixedUpdate()
@@ -74,6 +86,7 @@ public class PlayerScript : MonoBehaviour
         //move character
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+        //jumpCounter = 0;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -110,6 +123,10 @@ public class PlayerScript : MonoBehaviour
             LevelCount++;
             SavePlayerData();
             gamecontroller.SceneChange(LevelCount,health);
+        }
+        if (other.gameObject.CompareTag("Tilemap"))
+        {
+            //controller.jumpCount = 0;
         }
     }
 

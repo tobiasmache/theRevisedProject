@@ -734,7 +734,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -840,6 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370630430}
   - component: {fileID: 370630429}
+  - component: {fileID: 370630431}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -865,11 +866,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  MainMenuCanvas: {fileID: 1554710401}
-  mainMenu: {fileID: 497111198}
-  optionsMenu: {fileID: 139767973}
-  helpMenu: {fileID: 941504176}
-  creditMenu: {fileID: 1291192081}
   connectorToChangeHearts: {fileID: 1186161496}
 --- !u!4 &370630430
 Transform:
@@ -885,6 +881,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370630431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370630428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e21132f00efdc4ea836a094240d464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainMenuCanvas: {fileID: 1554710401}
+  mainMenu: {fileID: 497111198}
+  optionsMenu: {fileID: 139767973}
+  helpMenu: {fileID: 941504176}
+  creditMenu: {fileID: 1291192081}
 --- !u!1 &466402789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1107,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: BackPressed
         m_Mode: 1
         m_Arguments:
@@ -1853,7 +1866,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: BackPressed
         m_Mode: 1
         m_Arguments:
@@ -2051,7 +2064,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -2356,7 +2369,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: BackPressed
         m_Mode: 1
         m_Arguments:
@@ -2809,6 +2822,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   m_GroundCheck: {fileID: 1406933277}
+  m_Grounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3844,7 +3858,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: HelpPressed
         m_Mode: 1
         m_Arguments:
@@ -4137,7 +4151,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: CreditsPressed
         m_Mode: 1
         m_Arguments:
@@ -4889,7 +4903,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 370630429}
+      - m_Target: {fileID: 370630431}
         m_MethodName: OptionsPressed
         m_Mode: 1
         m_Arguments:
