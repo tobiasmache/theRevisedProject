@@ -28,6 +28,8 @@ public class PlayerScript : MonoBehaviour
     public Text Score;
     public GameObject[] collectables;
 
+   
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -84,9 +86,9 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         //move character
-
-        controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
-        jump = false;
+       
+            controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
+            jump = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -114,7 +116,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Spike"))
         {
-            PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
+            PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f)
             health++;
             changehearts.UpdateHearts(health);
 
@@ -130,6 +132,8 @@ public class PlayerScript : MonoBehaviour
         Score.text =  Scorecounter.ToString();
         Debug.Log(Scorecounter);
     }
+
+   
 
 }
 
