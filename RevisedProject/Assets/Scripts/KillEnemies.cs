@@ -33,6 +33,8 @@ public class KillEnemies : MonoBehaviour
                 {
                     enemies[hh].GetComponent<SpriteRenderer>().enabled = false;
                     enemies[hh].GetComponent<PolygonCollider2D>().enabled = false;
+                    PlayerScript.Scorecounter = PlayerScript.Scorecounter + 5;
+
                 }
             }
 
