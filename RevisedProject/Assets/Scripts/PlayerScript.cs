@@ -14,6 +14,9 @@ public class PlayerScript : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
+    private int jumpCounter = 0;
+    public int health=0;
+    private int LevelCount=-1;
     public int lightIntensity = 7;
     public Light Firefly;
 
@@ -28,8 +31,19 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        collectables= GameObject.FindGameObjectsWithTag("Collectable");
-        Debug.Log(collectables.Length);
+        collectables = GameObject.FindGameObjectsWithTag("Collectable");
+        Debug.Log("collectables in Scene= "+collectables.Length);
+
+        //Load Saved Data into Game
+        health = GlobalVariableStorer.Instance.health;
+        lightIntensity = GlobalVariableStorer.Instance.lightIntensity;
+        LevelCount = GlobalVariableStorer.Instance.SceneNumber;
+        changehearts.UpdateHearts(health);
+
+        if (LevelCount == 0)
+        {
+            lightIntensity = 7;
+        }
     }
     void Awake()
     {
@@ -48,8 +62,19 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Jump");
-            jump = true;
+            Debug.Log("Grounded:" + controller.m_Grounded);
+            if (jumpCounter <= 0 && controller.m_Grounded == false )
+            {
+                Debug.Log("Jump");
+                jump = true;
+                jumpCounter++;
+            }
+            else if (controller.m_Grounded==true)
+            {
+                jump = true;
+                jumpCounter = 0;
+            }
+
         }
 
         Firefly.intensity = lightIntensity;
@@ -62,7 +87,6 @@ public class PlayerScript : MonoBehaviour
 
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -94,6 +118,10 @@ public class PlayerScript : MonoBehaviour
             health++;
             changehearts.UpdateHearts(health);
 
+        }
+        if (other.gameObject.CompareTag("Tilemap"))
+        {
+            //controller.jumpCount = 0;
         }
     }
     void PrintScore()
