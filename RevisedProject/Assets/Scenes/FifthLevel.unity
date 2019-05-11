@@ -586,11 +586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels: []
-  MainMenuCanvas: {fileID: 0}
-  mainMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  helpMenu: {fileID: 0}
-  creditMenu: {fileID: 0}
   connectorToChangeHearts: {fileID: 0}
 --- !u!4 &370630430
 Transform:
@@ -1717,7 +1712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115002970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1978,11 +1973,13 @@ MonoBehaviour:
   controller: {fileID: 1186161502}
   animator: {fileID: 1186161503}
   runSpeed: 40
+  health: 0
   lightIntensity: 7
   Firefly: {fileID: 730736266}
   heart1: {fileID: 155413098}
   heart2: {fileID: 110718673}
   heart3: {fileID: 1846841516}
+  Score: {fileID: 0}
   collectables: []
 --- !u!114 &1186161502
 MonoBehaviour:
@@ -2003,6 +2000,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5
   m_GroundCheck: {fileID: 1369856937}
+  m_Grounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2144,11 +2142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels: []
-  MainMenuCanvas: {fileID: 0}
-  mainMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  helpMenu: {fileID: 0}
-  creditMenu: {fileID: 0}
   connectorToChangeHearts: {fileID: 0}
 --- !u!61 &1193693045
 BoxCollider2D:
@@ -5698,11 +5691,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels: []
-  MainMenuCanvas: {fileID: 0}
-  mainMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  helpMenu: {fileID: 0}
-  creditMenu: {fileID: 0}
   connectorToChangeHearts: {fileID: 0}
 --- !u!61 &1986401419
 BoxCollider2D:

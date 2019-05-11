@@ -388,11 +388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels: []
-  MainMenuCanvas: {fileID: 0}
-  mainMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  helpMenu: {fileID: 0}
-  creditMenu: {fileID: 0}
   connectorToChangeHearts: {fileID: 0}
 --- !u!4 &370630430
 Transform:
@@ -1667,11 +1662,13 @@ MonoBehaviour:
   controller: {fileID: 1186161502}
   animator: {fileID: 1186161503}
   runSpeed: 40
+  health: 0
   lightIntensity: 7
   Firefly: {fileID: 730736266}
   heart1: {fileID: 155413098}
   heart2: {fileID: 110718673}
   heart3: {fileID: 1846841516}
+  Score: {fileID: 0}
   collectables: []
 --- !u!114 &1186161502
 MonoBehaviour:
@@ -1692,6 +1689,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   m_GroundCheck: {fileID: 1979188931}
+  m_Grounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6236,11 +6234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Levels: []
-  MainMenuCanvas: {fileID: 0}
-  mainMenu: {fileID: 0}
-  optionsMenu: {fileID: 0}
-  helpMenu: {fileID: 0}
-  creditMenu: {fileID: 0}
   connectorToChangeHearts: {fileID: 0}
 --- !u!61 &1986401419
 BoxCollider2D:
@@ -6356,10 +6349,11 @@ AudioSource:
   m_GameObject: {fileID: 2106510748}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: bfb199c97aa874ef087b71d63262869b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 11b2faecfd4354496ad8321379ec9d94, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.19
   m_Pitch: 1
   Loop: 1
   Mute: 0
