@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -9,24 +10,22 @@ public class PlayerScript : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
-    public GameObject connectorToGameController;
-    private GameController gamecontroller;
-
     public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
 
     private int jumpCounter = 0;
-
     public int health=0;
     private int LevelCount=-1;
     public int lightIntensity = 7;
     public Light Firefly;
 
     public GameObject heart1;
-    public GameObject heart2;
+    public GameObject heart2; 
     public GameObject heart3;
-
+    private int health;
+    public static int Scorecounter = 0;
+    public Text Score;
     public GameObject[] collectables;
 
     // Start is called before the first frame update
@@ -49,7 +48,6 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         changehearts = GetComponent<ChangeHearts>();
-        gamecontroller = connectorToGameController.GetComponent<GameController>();
         changehearts.CreateHearts(heart1, heart2, heart3);
         Debug.Log("CreateHearts");
     }
@@ -57,6 +55,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -79,26 +78,29 @@ public class PlayerScript : MonoBehaviour
         }
 
         Firefly.intensity = lightIntensity;
+        PrintScore();
     }
 
     private void FixedUpdate()
     {
         //move character
+
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
-        //jumpCounter = 0;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Collectable"))
         {
-            for (int ii = 0; ii < collectables.Length; ii++)
+            for(int ii=0; ii < collectables.Length; ii++)
             {
                 if (other.gameObject == collectables[ii])
                 {
                     collectables[ii].GetComponent<SpriteRenderer>().enabled = false;
                     collectables[ii].GetComponent<PolygonCollider2D>().enabled = false;
+                    Scorecounter = Scorecounter + 5;
+
                 }
             }
             lightIntensity = lightIntensity + 5;
@@ -115,27 +117,19 @@ public class PlayerScript : MonoBehaviour
             PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
             health++;
             changehearts.UpdateHearts(health);
-        }
 
-        if (other.gameObject.CompareTag("Portal"))
-        {
-            Debug.Log("PORTAL"+LevelCount);
-            LevelCount++;
-            SavePlayerData();
-            gamecontroller.SceneChange(LevelCount,health);
         }
         if (other.gameObject.CompareTag("Tilemap"))
         {
             //controller.jumpCount = 0;
         }
     }
-
-    public void SavePlayerData()
+    void PrintScore()
     {
-        Debug.Log("Health= "+health);
-        GlobalVariableStorer.Instance.health = health;
-        GlobalVariableStorer.Instance.lightIntensity = lightIntensity;
-        GlobalVariableStorer.Instance.SceneNumber = LevelCount;
+
+        Score.text =  Scorecounter.ToString();
+        Debug.Log(Scorecounter);
     }
+
 }
 
