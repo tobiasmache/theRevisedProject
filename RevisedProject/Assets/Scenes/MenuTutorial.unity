@@ -1000,17 +1000,17 @@ MonoBehaviour:
   dialouge:
   - "Hello Explorer! It is great to meet you. I\u2019m glad you found me when you
     did, I don't think I could have lasted any longer alone. "
-  - 'Welcome to the island of Paradisio. It is usually very beautiful here, but the
-    forces of darkness have taken over our island! '
-  - 'I am Or, leader of my village. Before you arrived we were trying to defend the
-    island from the the shadow monsters. They have been trying to take over for many
-    years. '
+  - Welcome to the island of Paradisio. It is usually very beautiful here, but the
+    forces of darkness have taken over our island! (Press Z)
+  - I am Or, leader of my village. Before you arrived we were trying to defend the
+    island from the the darkness monsters. They have been trying to take over Paradisio
+    for many years. (Press Z)
   - My village and I were battling the monsters when I was knocked out. I didn't see
-    where the darkness monsters have gone. They took all of our light.
-  - 'Now I need to go defeat the darkness monsters and recollect all the light for
-    my villagers. Would you like to join me in my quest? I can offer you some of the
-    light as we explore the island. '
-  - ' '
+    where the darkness monsters went. They took all of our light. (Press Z)
+  - Now I need to go defeat the darkness monsters and recollect all the light for
+    my villagers. Would you like to join me on my quest? I can offer you some light
+    as we explore the island. (Press Z)
+  - 'Use the arrow keys to go explore the caves of the island! --> '
   talking: {fileID: 1128725069}
 --- !u!1 &466402789
 GameObject:
@@ -2686,7 +2686,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Hello Explorer! It is great to meet you. I\u2019m glad you found me when
-    you did, I don't think I could have lasted any longer alone. "
+    you did, I don't think I could have lasted any longer alone. (Press Z)"
 --- !u!222 &1128725070
 CanvasRenderer:
   m_ObjectHideFlags: 0

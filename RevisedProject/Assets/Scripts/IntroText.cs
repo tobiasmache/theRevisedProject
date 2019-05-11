@@ -18,7 +18,7 @@ public class IntroText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp("z") && counter<=6)
+        if (Input.GetKeyUp("z") && counter<5)
         {
             counter++;
             talking.text = dialouge[counter];
