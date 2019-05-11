@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Portal
   - Tilemap
+  - ToLevel5
   layers:
   - Default
   - TransparentFX

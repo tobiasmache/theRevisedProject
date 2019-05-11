@@ -8,6 +8,9 @@ public class GlobalVariableStorer : MonoBehaviour
     public int health=0;
     public int lightIntensity=7;
     public int SceneNumber=-1;
+    public int ScoreCounter = 0;
+    public int lightRange = 7;
+    public string[] LevelNames;
 
     // Start is called before the first frame update
     void Start()

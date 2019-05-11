@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     public void SceneChange(int lc, int health)
     {
         Debug.Log("Level Count" + (lc-1));
-        SceneManager.LoadScene(Levels[lc-1]);
+        SceneManager.LoadScene(GlobalVariableStorer.Instance.LevelNames[lc]);
     }
 
     private void Awake()
@@ -25,6 +25,14 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        if (GlobalVariableStorer.Instance.SceneNumber == 0)
+        {
+            GlobalVariableStorer.Instance.LevelNames = new string[Levels.Length];
+            for (int ii = 0; ii < Levels.Length; ii++)
+            {
+                GlobalVariableStorer.Instance.LevelNames[ii] = Levels[ii];
+            }
+        }
 
     }
 

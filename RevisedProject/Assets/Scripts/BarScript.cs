@@ -28,7 +28,7 @@ public class BarScript : MonoBehaviour
 
     private void UpdateLightBar()
     {
-        content.fillAmount = (lightAmount)/20;
+        content.fillAmount = (lightAmount)/40;
     }
 
     private float Map(float value, float inMin, float inMax, float outMin, float outMax)

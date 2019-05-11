@@ -32,7 +32,7 @@ public class KillEnemies : MonoBehaviour
                 if (Mathf.Abs(PlayerPos.transform.position.x-enemies[hh].transform.position.x)<=2)
                 {
                     enemies[hh].GetComponent<SpriteRenderer>().enabled = false;
-                    enemies[hh].GetComponent<PolygonCollider2D>().enabled = false;
+                    enemies[hh].GetComponent<CircleCollider2D>().enabled = false;
                     PlayerScript.Scorecounter = PlayerScript.Scorecounter + 5;
 
                 }

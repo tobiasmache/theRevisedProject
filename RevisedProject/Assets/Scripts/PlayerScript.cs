@@ -10,6 +10,9 @@ public class PlayerScript : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
+    public GameObject connectorToGameController;
+    private GameController gamecontroller;
+
     public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
@@ -18,11 +21,14 @@ public class PlayerScript : MonoBehaviour
     public int health=0;
     private int LevelCount=-1;
     public int lightIntensity = 7;
+    public int lightRange = 7;
     public Light Firefly;
 
     public GameObject heart1;
     public GameObject heart2; 
     public GameObject heart3;
+
+    private Vector3 playerPos;
 
     public static int Scorecounter = 0;
     public Text Score;
@@ -37,17 +43,26 @@ public class PlayerScript : MonoBehaviour
         //Load Saved Data into Game
         health = GlobalVariableStorer.Instance.health;
         lightIntensity = GlobalVariableStorer.Instance.lightIntensity;
+        lightRange= GlobalVariableStorer.Instance.lightRange;
         LevelCount = GlobalVariableStorer.Instance.SceneNumber;
+        Scorecounter = GlobalVariableStorer.Instance.ScoreCounter;
         changehearts.UpdateHearts(health);
 
         if (LevelCount == 0)
         {
             lightIntensity = 7;
+            lightRange = 7;
         }
-    }
+        if (LevelCount == 2)
+        {
+            health = 0;
+        }
+        playerPos = PlayerRestart.position;
+}
     void Awake()
     {
         changehearts = GetComponent<ChangeHearts>();
+        gamecontroller = connectorToGameController.GetComponent<GameController>();
         changehearts.CreateHearts(heart1, heart2, heart3);
         Debug.Log("CreateHearts");
     }
@@ -76,8 +91,17 @@ public class PlayerScript : MonoBehaviour
             }
 
         }
+        if (health == 3)
+        {
+            LevelCount--;
+            health = 0;
+            Scorecounter = 0;
+            SavePlayerData();
+            gamecontroller.SceneChange(LevelCount, health);
+        }
 
         Firefly.intensity = lightIntensity;
+        Firefly.range = lightRange;
         PrintScore();
     }
 
@@ -93,7 +117,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Collectable"))
         {
-            for(int ii=0; ii < collectables.Length; ii++)
+            for (int ii = 0; ii < collectables.Length; ii++)
             {
                 if (other.gameObject == collectables[ii])
                 {
@@ -104,31 +128,56 @@ public class PlayerScript : MonoBehaviour
                 }
             }
             lightIntensity = lightIntensity + 5;
+            lightRange = lightRange + 2;
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
-            PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
+            PlayerRestart.position = playerPos;
             health++;
             changehearts.UpdateHearts(health);
 
         }
         if (other.gameObject.CompareTag("Spike"))
         {
-            PlayerRestart.position = new Vector3(-6.2f, 5.4f, 0f);
+            PlayerRestart.position = playerPos;
             health++;
             changehearts.UpdateHearts(health);
 
         }
+        if (other.gameObject.CompareTag("Portal"))
+        {
+            Debug.Log("PORTAL" + LevelCount);
+            LevelCount++;
+            SavePlayerData();
+            gamecontroller.SceneChange(LevelCount, health);
+        }
         if (other.gameObject.CompareTag("Tilemap"))
         {
-            //controller.jumpCount = 0;
+            LevelCount=LevelCount+2;
+            SavePlayerData();
+            gamecontroller.SceneChange(LevelCount, health);
+        }
+        if (other.gameObject.CompareTag("ToLevel5"))
+        {
+            LevelCount =6;
+            SavePlayerData();
+            gamecontroller.SceneChange(LevelCount, health);
         }
     }
+
+    public void SavePlayerData()
+    {
+        Debug.Log("Health= " + health);
+        GlobalVariableStorer.Instance.health = health;
+        GlobalVariableStorer.Instance.lightIntensity = lightIntensity;
+        GlobalVariableStorer.Instance.lightRange = lightRange;
+        GlobalVariableStorer.Instance.SceneNumber = LevelCount;
+        GlobalVariableStorer.Instance.ScoreCounter = Scorecounter;
+    }
+
     void PrintScore()
     {
-
         Score.text =  Scorecounter.ToString();
-        Debug.Log(Scorecounter);
     }
 
 }
