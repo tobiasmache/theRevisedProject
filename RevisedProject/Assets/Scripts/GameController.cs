@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        changehearts = connectorToChangeHearts.GetComponent<ChangeHearts>();
+        //changehearts = connectorToChangeHearts.GetComponent<ChangeHearts>();
     }
 
     private void Start()

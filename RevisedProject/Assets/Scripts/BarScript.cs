@@ -15,7 +15,7 @@ public class BarScript : MonoBehaviour
 
     void Awake()
     {
-        playerscript = connectorToPlayerScript.GetComponent<PlayerScript>();
+        //playerscript = connectorToPlayerScript.GetComponent<PlayerScript>();
 
     }
 

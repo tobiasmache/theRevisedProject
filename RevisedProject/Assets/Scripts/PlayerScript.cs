@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
+    
 {
     public Transform PlayerRestart;
     private ChangeHearts changehearts;
